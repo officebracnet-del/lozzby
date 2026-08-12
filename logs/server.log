@@ -1,0 +1,13 @@
+
+> vibe-generated-app@1.0.0 dev
+> vite --host 0.0.0.0 --port 3000 --strictPort
+
+
+  VITE v5.4.20  ready in 181 ms
+
+  ➜  Local:   http://localhost:3000/
+  ➜  Network: http://172.20.121.214:3000/
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+Browserslist: browsers data (caniuse-lite) is 8 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
