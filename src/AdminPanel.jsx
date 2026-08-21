@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const API = "https://lozzby.onrender.com";
+const API = "https://daily-drop-backend-xkkc.onrender.com";
 
 const categories = [
   "Electronics",
@@ -29,10 +29,6 @@ const statuses = [
 ];
 
 export default function AdminPanel() {
-  // =========================
-  // AUTH
-  // =========================
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -41,10 +37,6 @@ export default function AdminPanel() {
   );
 
   const [loginLoading, setLoginLoading] = useState(false);
-
-  // =========================
-  // PRODUCTS
-  // =========================
 
   const [products, setProducts] = useState([]);
 
@@ -57,17 +49,9 @@ export default function AdminPanel() {
   const [search, setSearch] = useState("");
   const [productLoading, setProductLoading] = useState(false);
 
-  // =========================
-  // ORDERS
-  // =========================
-
   const [orders, setOrders] = useState([]);
   const [orderSearch, setOrderSearch] = useState("");
   const [loadingOrders, setLoadingOrders] = useState(false);
-
-  // =========================
-  // LOAD PRODUCTS
-  // =========================
 
   const loadProducts = async () => {
     try {
@@ -90,10 +74,6 @@ export default function AdminPanel() {
       setProductLoading(false);
     }
   };
-
-  // =========================
-  // LOAD ORDERS
-  // =========================
 
   const loadOrders = async () => {
     if (!token) return;
@@ -130,20 +110,12 @@ export default function AdminPanel() {
     }
   };
 
-  // =========================
-  // INITIAL LOAD
-  // =========================
-
   useEffect(() => {
     if (token) {
       loadProducts();
       loadOrders();
     }
   }, [token]);
-
-  // =========================
-  // LOGIN
-  // =========================
 
   const login = async () => {
     if (!username.trim() || !password.trim()) {
@@ -187,10 +159,6 @@ export default function AdminPanel() {
     }
   };
 
-  // =========================
-  // LOGOUT
-  // =========================
-
   function logout() {
     localStorage.removeItem("token");
 
@@ -198,10 +166,6 @@ export default function AdminPanel() {
     setProducts([]);
     setOrders([]);
   }
-
-  // =========================
-  // IMAGE SELECT
-  // =========================
 
   const selectImage = (e) => {
     const file = e.target.files?.[0];
@@ -226,10 +190,6 @@ export default function AdminPanel() {
 
     reader.readAsDataURL(file);
   };
-
-  // =========================
-  // ADD PRODUCT
-  // =========================
 
   const addProduct = async () => {
     if (!name.trim()) {
@@ -295,10 +255,6 @@ export default function AdminPanel() {
     }
   };
 
-  // =========================
-  // DELETE PRODUCT
-  // =========================
-
   const deleteProduct = async (
     productId,
     productName
@@ -345,10 +301,6 @@ export default function AdminPanel() {
       alert("Backend is not running");
     }
   };
-
-  // =========================
-  // UPDATE ORDER STATUS
-  // =========================
 
   const updateOrderStatus = async (
     orderId,
@@ -404,10 +356,6 @@ export default function AdminPanel() {
     }
   };
 
-  // =========================
-  // DELETE ORDER
-  // =========================
-
   const deleteOrder = async (orderId) => {
     if (!orderId) {
       alert("Order ID not found");
@@ -458,10 +406,6 @@ export default function AdminPanel() {
     }
   };
 
-  // =========================
-  // FILTER PRODUCTS
-  // =========================
-
   const filteredProducts = products.filter(
     (product) => {
       const text = `
@@ -476,10 +420,6 @@ export default function AdminPanel() {
       );
     }
   );
-
-  // =========================
-  // FILTER ORDERS
-  // =========================
 
   const filteredOrders = orders.filter(
     (order) => {
@@ -510,10 +450,6 @@ export default function AdminPanel() {
     }
   );
 
-  // =========================
-  // LOGIN SCREEN
-  // =========================
-
   if (!token) {
     return (
       <div style={loginPage}>
@@ -523,7 +459,7 @@ export default function AdminPanel() {
           </div>
 
           <h1 style={loginTitle}>
-            Lozzby Admin
+            Daily Drop Admin
           </h1>
 
           <p style={loginSubtitle}>
@@ -568,20 +504,14 @@ export default function AdminPanel() {
     );
   }
 
-  // =========================
-  // ADMIN PANEL
-  // =========================
-
   return (
     <div style={page}>
       <div style={container}>
 
-        {/* HEADER */}
-
         <div style={headerCard}>
           <div>
             <div style={smallBadge}>
-              LOZZBY ADMIN
+              DAILY DROP ADMIN
             </div>
 
             <h1 style={headerTitle}>
@@ -600,8 +530,6 @@ export default function AdminPanel() {
             Logout
           </button>
         </div>
-
-        {/* STATS */}
 
         <div style={statsGrid}>
           <StatCard
@@ -640,8 +568,6 @@ export default function AdminPanel() {
           />
         </div>
 
-        {/* ADD PRODUCT */}
-
         <div style={cardStyle}>
           <div style={sectionHeader}>
             <div>
@@ -650,7 +576,7 @@ export default function AdminPanel() {
               </h2>
 
               <p style={mutedText}>
-                Add products to your Lozzby store
+                Add products to your Daily Drop store
               </p>
             </div>
           </div>
@@ -775,8 +701,6 @@ export default function AdminPanel() {
               : "➕ Add Product"}
           </button>
         </div>
-
-        {/* PRODUCTS */}
 
         <div style={cardStyle}>
           <div style={sectionHeader}>
@@ -906,8 +830,6 @@ export default function AdminPanel() {
           </div>
         </div>
 
-        {/* ORDERS */}
-
         <div style={cardStyle}>
 
           <div style={sectionHeader}>
@@ -980,11 +902,6 @@ export default function AdminPanel() {
   );
 }
 
-
-// =========================================================
-// STAT CARD
-// =========================================================
-
 function StatCard({
   icon,
   title,
@@ -1009,11 +926,6 @@ function StatCard({
   );
 }
 
-
-// =========================================================
-// ORDER CARD
-// =========================================================
-
 function OrderCard({
   order,
   index,
@@ -1024,8 +936,6 @@ function OrderCard({
 
   return (
     <div style={orderCard}>
-
-      {/* ORDER HEADER */}
 
       <div style={orderHeader}>
         <div>
@@ -1058,8 +968,6 @@ function OrderCard({
           ))}
         </select>
       </div>
-
-      {/* CUSTOMER */}
 
       <div style={customerBox}>
 
@@ -1099,8 +1007,6 @@ function OrderCard({
 
         </div>
       </div>
-
-      {/* PRODUCTS */}
 
       <h3 style={orderedTitle}>
         📦 Ordered Products
@@ -1177,8 +1083,6 @@ function OrderCard({
         )}
       </div>
 
-      {/* TOTAL */}
-
       <div style={totalRow}>
         <span>
           Order Total
@@ -1192,8 +1096,6 @@ function OrderCard({
         </strong>
       </div>
 
-      {/* DELETE */}
-
       <button
         onClick={() =>
           deleteOrder(order.id)
@@ -1206,11 +1108,6 @@ function OrderCard({
     </div>
   );
 }
-
-
-// =========================================================
-// INFO
-// =========================================================
 
 function Info({
   label,
@@ -1232,11 +1129,6 @@ function Info({
     </div>
   );
 }
-
-
-// =========================================================
-// STYLES
-// =========================================================
 
 const page = {
   minHeight: "100vh",

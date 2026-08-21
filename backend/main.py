@@ -21,6 +21,7 @@ app.add_middleware(
         "http://127.0.0.1:3000",
         "http://localhost:3000",
         "http://192.168.1.104:3000",
+        "https://dailydrop-iyc5.onrender.com",
     ],
     allow_credentials=True,
     allow_methods=["*"],
