@@ -18,11 +18,13 @@ app = FastAPI(title="Lozzby Backend")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://127.0.0.1:3000",
-        "http://localhost:3000",
-        "http://192.168.1.104:3000",
-        "https://dailydrop-iyc5.onrender.com",
-    ],
+        allow_origins=[
+    "http://127.0.0.1:3000",
+    "http://localhost:3000",
+    "http://192.168.1.104:3000",
+    "https://dailydrop-iyc5.onrender.com",
+    "https://lozzby-frontend.onrender.com",
+],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
